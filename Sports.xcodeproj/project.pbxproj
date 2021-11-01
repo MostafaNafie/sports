@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		45D685A6272FBAA300E08B86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685A5272FBAA300E08B86 /* AppDelegate.swift */; };
 		45D685A8272FBAA300E08B86 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685A7272FBAA300E08B86 /* SceneDelegate.swift */; };
-		45D685AA272FBAA300E08B86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685A9272FBAA300E08B86 /* ViewController.swift */; };
+		45D685AA272FBAA300E08B86 /* SportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685A9272FBAA300E08B86 /* SportsVC.swift */; };
 		45D685AD272FBAA300E08B86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D685AB272FBAA300E08B86 /* Main.storyboard */; };
 		45D685B0272FBAA300E08B86 /* Sports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45D685AE272FBAA300E08B86 /* Sports.xcdatamodeld */; };
 		45D685B2272FBAA700E08B86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45D685B1272FBAA700E08B86 /* Assets.xcassets */; };
@@ -20,7 +20,7 @@
 		45D685A2272FBAA300E08B86 /* Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45D685A5272FBAA300E08B86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45D685A7272FBAA300E08B86 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45D685A9272FBAA300E08B86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		45D685A9272FBAA300E08B86 /* SportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsVC.swift; sourceTree = "<group>"; };
 		45D685AC272FBAA300E08B86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45D685AF272FBAA300E08B86 /* Sports.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sports.xcdatamodel; sourceTree = "<group>"; };
 		45D685B1272FBAA700E08B86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		45D685BC2730841000E08B86 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				45D685A9272FBAA300E08B86 /* ViewController.swift */,
+				45D685A9272FBAA300E08B86 /* SportsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,7 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45D685AA272FBAA300E08B86 /* ViewController.swift in Sources */,
+				45D685AA272FBAA300E08B86 /* SportsVC.swift in Sources */,
 				45D685A6272FBAA300E08B86 /* AppDelegate.swift in Sources */,
 				45D685B0272FBAA300E08B86 /* Sports.xcdatamodeld in Sources */,
 				45D685A8272FBAA300E08B86 /* SceneDelegate.swift in Sources */,
