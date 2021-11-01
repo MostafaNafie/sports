@@ -13,7 +13,8 @@ class SportsListVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: - Variables
-    private var sports: [Sport]?
+    private var sports = [Sport]()
+    private var selectedSportIndex = 0
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -26,12 +27,13 @@ class SportsListVC: UIViewController {
 // MARK: - UITableViewDataSource
 extension SportsListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sports?.count ?? 0
+        sports.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SportCell.self)) as! SportCell
-        cell.textLabel?.text = sports?[indexPath.row].name
+        cell.delegate = self
+        cell.configureCell(with: sports[indexPath.row])
         return cell
     }
 }
@@ -39,7 +41,7 @@ extension SportsListVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SportsListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let title = sports?[indexPath.row].name
+        let title = sports[indexPath.row].name
         goToSportDetailsVC(with: title)
     }
 
@@ -48,13 +50,42 @@ extension SportsListVC: UITableViewDelegate {
                         subtitle: "Edit already existing Sport",
                         actionTitle: "Save",
                         cancelTitle: "Cancel",
-                        inputText: sports?[indexPath.row].name,
+                        inputText: sports[indexPath.row].name,
                         inputPlaceholder: "Sport",
                         inputKeyboardType: .alphabet, actionHandler:
                             { [weak self] (sportName: String?) in
-            self?.sports?[indexPath.row].name = sportName
+            self?.sports[indexPath.row].name = sportName
             self?.tableView.reloadData()
         })
+    }
+}
+
+// MARK: - SportCellDelegate
+extension SportsListVC: SportCellDelegate {
+    func sportCellViewDidTapAddImage(_ cell: SportCell) {
+        selectedSportIndex = tableView.indexPath(for: cell)?.row ?? 0
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension SportsListVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+
+        let imageName = UUID().uuidString
+        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+
+        if let jpegData = image.jpegData(compressionQuality: 0.8) {
+            try? jpegData.write(to: imagePath)
+            sports[selectedSportIndex].imagePath = imagePath.path
+        }
+
+        tableView.reloadData()
+        dismiss(animated: true)
     }
 }
 
@@ -80,7 +111,7 @@ extension SportsListVC {
                         inputPlaceholder: "Sport",
                         inputKeyboardType: .alphabet, actionHandler:
                             { [weak self] (sportName: String?) in
-            self?.sports?.append(.init(name: sportName, image: nil))
+            self?.sports.append(.init(name: sportName, imagePath: nil))
             self?.tableView.reloadData()
         })
     }
@@ -118,6 +149,11 @@ extension SportsListVC {
         alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
 
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
 

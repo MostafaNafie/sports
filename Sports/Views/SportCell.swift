@@ -7,17 +7,33 @@
 
 import UIKit
 
+protocol SportCellDelegate {
+    func sportCellViewDidTapAddImage(_ cell: SportCell)
+}
+
 class SportCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // MARK: - Outlets
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addImageButton: UIButton!
+    @IBOutlet weak var sportImageView: UIImageView!
+
+    // MARK: - variables
+    var delegate: SportCellDelegate?
+
+    // MARK: - Public Methods
+    func configureCell(with sport: Sport) {
+        nameLabel.text = sport.name
+        if let image = UIImage(contentsOfFile: sport.imagePath ?? "") {
+            sportImageView.image = image
+            addImageButton.setTitle("", for: .normal)
+        } else {
+            addImageButton.setTitle("Add image", for: .normal)
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    // MARK: - Actions
+    @IBAction func addImageButtonTapped() {
+        delegate?.sportCellViewDidTapAddImage(self)
     }
-    
 }
