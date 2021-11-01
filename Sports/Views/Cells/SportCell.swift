@@ -21,11 +21,15 @@ class SportCell: UITableViewCell {
     // MARK: - variables
     var delegate: SportCellDelegate?
 
+    override func prepareForReuse() {
+        sportImageView.image = nil
+    }
+
     // MARK: - Public Methods
     func configureCell(with sport: Sport) {
         nameLabel.text = sport.name
-        if let image = UIImage(contentsOfFile: sport.imagePath ?? "") {
-            sportImageView.image = image
+        if let imageData = sport.imageData {
+            sportImageView.image = UIImage(data: imageData)
             addImageButton.setTitle("", for: .normal)
         } else {
             addImageButton.setTitle("Add image", for: .normal)

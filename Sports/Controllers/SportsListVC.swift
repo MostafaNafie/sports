@@ -21,13 +21,14 @@ class SportsListVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupTableView()
+        sports = CoreDataManager.loadSports() ?? [Sport]()
     }
 }
 
 // MARK: - UITableViewDataSource
 extension SportsListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sports.count
+        return sports.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,8 +54,17 @@ extension SportsListVC: UITableViewDelegate {
                         actionHandler:
                             { [weak self] (sportName: String?) in
             self?.sports[indexPath.row].name = sportName
+            CoreDataManager.saveContext()
             self?.tableView.reloadData()
         })
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            CoreDataManager.deleteSport(sports[indexPath.row])
+            sports = CoreDataManager.loadSports() ?? [Sport]()
+            tableView.reloadData()
+        }
     }
 }
 
@@ -74,12 +84,9 @@ extension SportsListVC: UIImagePickerControllerDelegate, UINavigationControllerD
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
 
-        let imageName = UUID().uuidString
-        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
-
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
-            try? jpegData.write(to: imagePath)
-            sports[selectedSportIndex].imagePath = imagePath.path
+            sports[selectedSportIndex].imageData = jpegData
+            CoreDataManager.saveContext()
         }
 
         tableView.reloadData()
@@ -107,7 +114,8 @@ extension SportsListVC {
                         inputPlaceholder: "Sport",
                         actionHandler:
                             { [weak self] (sportName: String?) in
-            self?.sports.append(.init(name: sportName, imagePath: nil))
+            CoreDataManager.saveSport(sportName)
+            self?.sports = CoreDataManager.loadSports() ?? [Sport]()
             self?.tableView.reloadData()
         })
     }
