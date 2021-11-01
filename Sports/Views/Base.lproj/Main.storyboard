@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="24.637681159420293" y="118.52678571428571"/>
         </scene>
-        <!--Sports DetailsVC-->
+        <!--Players ListVC-->
         <scene sceneID="zQY-zR-jIc">
             <objects>
-                <viewController storyboardIdentifier="SportsDetailsVC" id="EoE-JR-dR9" customClass="SportsDetailsVC" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayersListVC" id="EoE-JR-dR9" customClass="PlayersListVC" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CVN-AZ-6xk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

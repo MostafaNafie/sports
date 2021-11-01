@@ -1,5 +1,5 @@
 //
-//  SportsVC.swift
+//  PlayersListVC.swift
 //  Sports
 //
 //  Created by Mostafa Nafie on 1/11/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SportsDetailsVC: UIViewController {
+class PlayersListVC: UIViewController {
 
     // MARK: - Oulets
     @IBOutlet weak var tableView: UITableView!
@@ -17,7 +17,6 @@ class SportsDetailsVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        title = "Sports Details"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
 
