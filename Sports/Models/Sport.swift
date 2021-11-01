@@ -11,4 +11,5 @@ import UIKit
 struct Sport {
     var name: String?
     var imagePath: String?
+    var players: [Player]?
 }

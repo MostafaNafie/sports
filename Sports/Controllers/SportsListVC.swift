@@ -48,11 +48,9 @@ extension SportsListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         showInputDialog(title: "Edit Sport",
                         subtitle: "Edit already existing Sport",
-                        actionTitle: "Save",
-                        cancelTitle: "Cancel",
                         inputText: sports[indexPath.row].name,
                         inputPlaceholder: "Sport",
-                        inputKeyboardType: .alphabet, actionHandler:
+                        actionHandler:
                             { [weak self] (sportName: String?) in
             self?.sports[indexPath.row].name = sportName
             self?.tableView.reloadData()
@@ -106,10 +104,8 @@ extension SportsListVC {
     @objc private func addTapped() {
         showInputDialog(title: "New Sport",
                         subtitle: "Add a new Sport",
-                        actionTitle: "Save",
-                        cancelTitle: "Cancel",
                         inputPlaceholder: "Sport",
-                        inputKeyboardType: .alphabet, actionHandler:
+                        actionHandler:
                             { [weak self] (sportName: String?) in
             self?.sports.append(.init(name: sportName, imagePath: nil))
             self?.tableView.reloadData()
@@ -123,13 +119,13 @@ extension SportsListVC {
         navigationController?.pushViewController(sportsDetailsVC, animated: true)
     }
 
-    private func showInputDialog(title:String? = nil,
-                         subtitle:String? = nil,
-                         actionTitle:String? = "Add",
-                         cancelTitle:String? = "Cancel",
-                                 inputText:String? = nil,
-                         inputPlaceholder:String? = nil,
-                         inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
+    private func showInputDialog(title: String? = nil,
+                         subtitle: String? = nil,
+                         actionTitle: String? = "Save",
+                         cancelTitle: String? = "Cancel",
+                                 inputText: String? = nil,
+                         inputPlaceholder: String? = nil,
+                         inputKeyboardType: UIKeyboardType = UIKeyboardType.default,
                          cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
                          actionHandler: ((_ text: String?) -> Void)? = nil) {
 
@@ -156,4 +152,3 @@ extension SportsListVC {
         return paths[0]
     }
 }
-
