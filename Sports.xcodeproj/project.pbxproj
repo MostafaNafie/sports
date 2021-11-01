@@ -60,14 +60,38 @@
 			children = (
 				45D685A5272FBAA300E08B86 /* AppDelegate.swift */,
 				45D685A7272FBAA300E08B86 /* SceneDelegate.swift */,
-				45D685A9272FBAA300E08B86 /* ViewController.swift */,
-				45D685AB272FBAA300E08B86 /* Main.storyboard */,
+				45D685BE2730846100E08B86 /* Models */,
+				45D685BD2730844200E08B86 /* Views */,
+				45D685BC2730841000E08B86 /* Controllers */,
 				45D685B1272FBAA700E08B86 /* Assets.xcassets */,
-				45D685B3272FBAA700E08B86 /* LaunchScreen.storyboard */,
 				45D685B6272FBAA700E08B86 /* Info.plist */,
 				45D685AE272FBAA300E08B86 /* Sports.xcdatamodeld */,
 			);
 			path = Sports;
+			sourceTree = "<group>";
+		};
+		45D685BC2730841000E08B86 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				45D685A9272FBAA300E08B86 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		45D685BD2730844200E08B86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				45D685AB272FBAA300E08B86 /* Main.storyboard */,
+				45D685B3272FBAA700E08B86 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		45D685BE2730846100E08B86 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
