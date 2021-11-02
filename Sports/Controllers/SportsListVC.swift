@@ -28,7 +28,7 @@ class SportsListVC: UIViewController {
 // MARK: - UITableViewDataSource
 extension SportsListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sports.count
+        sports.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,7 +43,7 @@ extension SportsListVC: UITableViewDataSource {
 extension SportsListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sport = sports[indexPath.row]
-        goToSportDetailsVC(with: sport)
+        goToPlayersListVC(with: sport)
     }
 
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -120,7 +120,7 @@ extension SportsListVC {
         })
     }
 
-    private func goToSportDetailsVC(with sport: Sport) {
+    private func goToPlayersListVC(with sport: Sport) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let sportsDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PlayersListVC.self)) as! PlayersListVC
         sportsDetailsVC.sport = sport
@@ -153,10 +153,5 @@ extension SportsListVC {
         alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
 
         self.present(alert, animated: true, completion: nil)
-    }
-
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 }
