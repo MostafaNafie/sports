@@ -13,7 +13,7 @@ class PlayersListVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: - Variables
-    var players = [Player]()
+    var sport: Sport!
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -26,13 +26,13 @@ class PlayersListVC: UIViewController {
 // MARK: - UITableViewDataSource
 extension PlayersListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        players.count
+        sport.players?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")! as UITableViewCell
-        let player = players[indexPath.row]
-        cell.textLabel?.text = "\(player.name ?? "") - Age: \(player.age ?? ""), Height: \(player.height ?? "")"
+        let player = sport.players?[indexPath.row] as? Player
+        cell.textLabel?.text = "\(player?.name ?? "") - Age: \(player?.age ?? ""), Height: \(player?.height ?? "")"
         return cell
     }
 }
@@ -40,24 +40,35 @@ extension PlayersListVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PlayersListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let player = sport.players?[indexPath.row] as? Player
         showInputDialog(title: "Edit Player",
                         subtitle: "Edit already existing Player",
-                        name: players[indexPath.row].name,
-                        age: players[indexPath.row].age,
-                        height: players[indexPath.row].height,
+                        name: player?.name,
+                        age: player?.age,
+                        height: player?.height,
                         actionHandler:
                             { [weak self] name, age, height in
-            self?.players[indexPath.row].name = name
-            self?.players[indexPath.row].age = age
-            self?.players[indexPath.row].height = height
+            let player = self?.sport?.players?[indexPath.row] as? Player
+            player?.name = name
+            player?.age = age
+            player?.height = height
+            CoreDataManager.saveContext()
             self?.tableView.reloadData()
         })
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            CoreDataManager.deletePlayer(sport.players?[indexPath.row] as! Player, sport)
+            tableView.reloadData()
+        }
     }
 }
 
 // MARK: - Private Methods
 extension PlayersListVC {
     private func setupUI() {
+        title = sport.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
 
@@ -71,7 +82,7 @@ extension PlayersListVC {
                         subtitle: "Add a new Player",
                         actionHandler:
                             { [weak self] name, age, height in
-            self?.players.append(.init(name: name, age: age, height: height))
+            CoreDataManager.savePlayer(name, age, height, (self?.sport)!)
             self?.tableView.reloadData()
         })
     }

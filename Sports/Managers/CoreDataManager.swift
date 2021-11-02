@@ -32,6 +32,20 @@ struct CoreDataManager {
         saveContext()
     }
 
+    static func savePlayer(_ name: String?, _ age: String?, _ height: String?, _ sport: Sport) {
+        let player = Player(context: managedObjectContext)
+        player.name = name
+        player.age = age
+        player.height = height
+        sport.addToPlayers(player)
+        saveContext()
+    }
+
+    static func deletePlayer(_ player: Player, _ sport: Sport) {
+        sport.removeFromPlayers(player)
+        saveContext()
+    }
+
     static func saveContext() {
         if managedObjectContext.hasChanges {
             do {

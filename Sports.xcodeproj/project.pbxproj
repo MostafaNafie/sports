@@ -17,7 +17,6 @@
 		45D685C02730869F00E08B86 /* PlayersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685BF2730869F00E08B86 /* PlayersListVC.swift */; };
 		45D685C5273089A800E08B86 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685C3273089A800E08B86 /* SportCell.swift */; };
 		45D685C6273089A800E08B86 /* SportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45D685C4273089A800E08B86 /* SportCell.xib */; };
-		45D685C927309F2C00E08B86 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685C827309F2C00E08B86 /* Player.swift */; };
 		45D685CB2730A9E400E08B86 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D685CA2730A9E400E08B86 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		45D685BF2730869F00E08B86 /* PlayersListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListVC.swift; sourceTree = "<group>"; };
 		45D685C3273089A800E08B86 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		45D685C4273089A800E08B86 /* SportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportCell.xib; sourceTree = "<group>"; };
-		45D685C827309F2C00E08B86 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		45D685CA2730A9E400E08B86 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +68,7 @@
 			children = (
 				45D685A5272FBAA300E08B86 /* AppDelegate.swift */,
 				45D685A7272FBAA300E08B86 /* SceneDelegate.swift */,
-				45D685BE2730846100E08B86 /* Models */,
+				45D685BE2730846100E08B86 /* Managers */,
 				45D685BD2730844200E08B86 /* Views */,
 				45D685BC2730841000E08B86 /* Controllers */,
 				45D685B1272FBAA700E08B86 /* Assets.xcassets */,
@@ -99,13 +97,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		45D685BE2730846100E08B86 /* Models */ = {
+		45D685BE2730846100E08B86 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				45D685C827309F2C00E08B86 /* Player.swift */,
 				45D685CA2730A9E400E08B86 /* CoreDataManager.swift */,
 			);
-			path = Models;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		45D685C727309E8400E08B86 /* Cells */ = {
@@ -193,7 +190,6 @@
 				45D685A6272FBAA300E08B86 /* AppDelegate.swift in Sources */,
 				45D685C5273089A800E08B86 /* SportCell.swift in Sources */,
 				45D685B0272FBAA300E08B86 /* Sports.xcdatamodeld in Sources */,
-				45D685C927309F2C00E08B86 /* Player.swift in Sources */,
 				45D685A8272FBAA300E08B86 /* SceneDelegate.swift in Sources */,
 				45D685CB2730A9E400E08B86 /* CoreDataManager.swift in Sources */,
 				45D685C02730869F00E08B86 /* PlayersListVC.swift in Sources */,

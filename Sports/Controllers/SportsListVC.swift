@@ -42,8 +42,8 @@ extension SportsListVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SportsListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let title = sports[indexPath.row].name
-        goToSportDetailsVC(with: title)
+        let sport = sports[indexPath.row]
+        goToSportDetailsVC(with: sport)
     }
 
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -120,10 +120,10 @@ extension SportsListVC {
         })
     }
 
-    private func goToSportDetailsVC(with title: String?) {
+    private func goToSportDetailsVC(with sport: Sport) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let sportsDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PlayersListVC.self))
-        sportsDetailsVC.title = title
+        let sportsDetailsVC = storyboard.instantiateViewController(withIdentifier: String(describing: PlayersListVC.self)) as! PlayersListVC
+        sportsDetailsVC.sport = sport
         navigationController?.pushViewController(sportsDetailsVC, animated: true)
     }
 
